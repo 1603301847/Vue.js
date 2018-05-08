@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>v-on:click</title>
+<body>
+    <div id="app">
+        <button v-if="showBtn" v-on:click="handleClick">{{ text }}</button>
+    </div>
+</body>
+
+<script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+
+<script>
+    var myData = {
+        text: "Click me",
+        showBtn: true
+    };
+    var app = new Vue({
+        el: '#app',
+        data: myData,
+        methods: {
+            handleClick: function(){
+                console.log('Clicked!');
+            }
+        }
+})
+</script>
+</html>

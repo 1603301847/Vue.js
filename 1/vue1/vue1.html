@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <!-- View -->
+    <div id="app">
+        <span v-bind:title="message">{{ text }}</span>
+    </div>
+    <!-- 引入vue.js框架文件 -->
+    <script src="vue.js"></script>
+    <!-- Mode -->
+    <script>
+        var myData = {
+            text:"Hello!",//多条语句用逗号隔开
+            message:"我爱你中国！"
+        };
+        //ViewMode
+       var app = new Vue({
+            el: "#app",
+            data: myData
+        });
+    </script>
+</body>
+</html>
