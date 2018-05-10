@@ -1,0 +1,15 @@
+/*
+* @Author: Marte
+* @Date:   2018-03-21 10:46:48
+* @Last Modified by:   Marte
+* @Last Modified time: 2018-03-21 11:55:15
+*/
+p.size1{
+    font-size: 20px;
+    cursor: pointer;
+}
+
+p.size2{
+    font-size: 40px;
+    cursor: pointer;
+}

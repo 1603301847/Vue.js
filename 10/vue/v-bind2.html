@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <style type="text/css">
+        .a{
+            text-decoration: line-through;
+            font-weight: bold;
+        }
+
+        .b{
+            text-decoration: none;
+            font-weight: normal;
+            color: red;
+        }
+        .c{
+            font-style: italic;
+        }
+        .d{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+    <!-- v-bind用于动态绑定标签的属性，使得标签的属性值可以动态变化，v-on用于监听事件 -->
+        <p v-bind:class="[activeCls,errorCls]"><span v-bind:class="{ 'a': isOK, 'b': !isOK }">今天看了一个小时的Vuejs教学视频</span>
+        <button v-on:click="handelClick" class="btn">{{ text }}</button>
+        </p>
+    </div>
+
+    <script src="js/vue.min.js"></script>
+
+    <script>
+        var myData = {
+            isOK: false,
+            text: "未完成",
+            activeCls: "c",
+            errorCls: "d"
+        };
+
+        var app = new Vue({
+            el: "#app",
+            data: myData,
+            methods: {
+                handelClick: function(){
+                    // alert("OK");
+                //     if( myData.isOK === false)//如果myStyle的值为类名a
+                //     myData.isOK = true;//将true保存到变量isOK中
+                // else//如果isOK的值不等于false,也就是isOK的值为true
+                //     myData.isOK = false;
+                myData.isOK = !myData.isOK;
+                if(myData.text === "未完成")
+                   myData.text = "已完成";
+                   else
+                   myData.text = "未完成";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

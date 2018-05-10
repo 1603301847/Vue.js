@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style type="text/css" media="screen">
+        #page1,#page2,#page3,#page4{
+            width: 400px;
+            height: 400px;
+            background-color: #DDDDDD;
+        }
+        #title{
+            font-size: 20px;
+            width: 400px;
+            height: 50px;
+            /* background-color: red; */
+            text-align: center;
+            line-height: 50px;
+            margin: 0px;
+        }
+        #content{
+            width: 300px;
+            height: 300px;
+            background-color: green;
+            text-align: center;
+            line-height: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #btn{
+            width: 400px;
+            height: 50px;
+            /* background-color: blue; */
+            text-align: center;
+            line-height: 50px;
+        }
+        #app{
+            margin-right: auto;
+            margin-left: auto;
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="page1" v-if="pageNo==1">
+           <h1 id="title">注册向导</h1>
+           <div id="content">
+                    第一步
+           </div>
+           <div id="btn"><button @click="handleClick1">下一步</button></div>
+        </div>
+        <div id="page2" v-if="pageNo==2">
+           <h1 id="title">注册向导</h1>
+           <div id="content">
+                    第二步
+           </div>
+           <div id="btn"><button @click="handleClick2">上一步</button><button @click="handleClick3">下一步</button></div>
+        </div>
+        <div id="page3" v-if="pageNo==3">
+           <h1 id="title">注册向导</h1>
+           <div id="content">
+                    第三步
+           </div>
+           <div id="btn"><button @click="handleClick4">上一步</button><button @click="handleClick5">完成</button></div>
+        </div>
+        <div id="page4" v-if="pageNo==4">
+           <h1 id="title">注册向导</h1>
+           <div id="content">
+                    注册成功
+           </div>
+        </div>
+    </div>
+    <script src="js/vue25.js"></script>
+    <script>
+        var myData = {
+            pageNo: 1
+        };
+        var app = new Vue({
+            el: "#app",
+            data: myData,
+            methods: {
+                handleClick1: function(){
+                    myData.pageNo = 2;
+                },
+                handleClick2: function(){
+                    myData.pageNo = 1;
+                },
+                handleClick3: function(){
+                    myData.pageNo = 3;
+                },
+                handleClick4: function(){
+                    myData.pageNo = 2;
+                },
+                handleClick5: function(){
+                    myData.pageNo = 4;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

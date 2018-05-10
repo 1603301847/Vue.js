@@ -6,7 +6,8 @@
     <title>v-on:click</title>
 <body>
     <div id="app">
-        <button v-if="showBtn" v-on:click="handleClick">{{ text }}</button>
+        <!-- <button v-if="showBtn" v-on:click="handleClick">{{ text }}</button> -->
+        <button v-on:click="handleClick">{{ text }}</button>
     </div>
 </body>
 
@@ -15,7 +16,7 @@
 <script>
     var myData = {
         text: "Click me",
-        showBtn: true
+        // showBtn: true
     };
     var app = new Vue({
         el: '#app',

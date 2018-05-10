@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			p{
+				width: 100px;
+				height: 40px;
+				text-align: center;
+				line-height: 40px;
+			}
+			.haveBorder{
+				border: 2px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<p v-bind:class="{'haveBorder': isBorder}" v-on:mouseover="handleMouseover" v-on:mouseout="handleMouseout" >美味汉堡</p>
+		</div>
+		<script src="vue.min.js"></script>
+		<script type="text/javascript">
+			var myData = {
+				isBorder: false
+			}
+			var app = new Vue({
+				el: "#app",
+				data: myData,
+				methods:{
+					handleMouseover: function(){
+						myData.isBorder = true;
+					},
+					handleMouseout: function(){
+						myData.isBorder = false;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

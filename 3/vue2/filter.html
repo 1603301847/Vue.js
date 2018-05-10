@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="name" />
+        <h1>你好，{{ name }}</h1>
+        <span>{{ myTime | myFilter }}</span>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        var myData = {
+            name: "Vuejs框架！",
+            myTime: new Date()
+        };
+        function updateTime(){
+            myData.myTime = new Date();
+        }
+        function padDate(value){
+            return value < 10 ? '0' + value : value;
+        }
+        new Vue({
+            el: "#app",
+            data: myData,
+            created: function(){
+                console.log(myData.name);
+                this.time=setInterval(updateTime, 1000);
+            },
+            mounted: function(){
+                console.log(myData.name+"第二次显示！");
+            },
+            beforeDestory:function(){
+                    clearInterval(this.timer);
+            },
+            filters: {
+                myFilter: function(myTimeValue){
+                    // 过滤器的功能代码
+                    var date = new Date(myTimeValue);
+                    var year = date.getFullYear();
+                    var month = padDate(date.getMonth() + 1);
+                    var day = padDate(date.getDate());
+                    var hours = padDate(date.getHours());
+                    var minutes = padDate(date.getMinutes());
+                    var seconds = padDate(date.getSeconds());
+                    return "★" + year + "." + month + "." + day + hours + ":" + minutes + ":" + seconds + "★";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>methods方法</title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <div id="app">
+    <h3>简易计算器（用methods方法实现）</h3>
+    <input type="text" v-model.number="a" />
+    <input type="text" v-model="operator"/>
+    <input type="text" v-model.number="b"/>
+    <!-- <input type="button" value="计算" v-on:click="handleClick"/> -->
+    <button v-on:click="handleClick">计算</button>
+    <p>计算结果：{{ a }} {{ operator }} {{ b }} = {{ c }}</p>
+    </div>
+
+    <script src="js/vue.min.js"></script>
+
+    <script type="text/javascript">
+        var myData = {
+            a: 0,
+            b: 0,
+            operator: "+",
+            c: 0
+        };
+
+        var app = new Vue({
+            el: "#app",
+            data: myData,
+            methods: {
+                handleClick: function(){
+                    switch(myData.operator){
+                        case "+": {myData.c = myData.a + myData.b; break;}
+                        case "-": {myData.c = myData.a - myData.b; break;}
+                        case "*": {myData.c = myData.a * myData.b; break;}
+                        case "/": {myData.c = myData.a / myData.b; break;}
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

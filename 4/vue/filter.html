@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <span v-bind:class="myStyle">{{ myTime | myFilter }}</span>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        var myData={
+            myTime: new Date(),
+            myStyle: "fontStyle"
+        };
+        var myTimer;
+        function updateTime(){
+            myData.myTime = new Date()
+        };
+        var padDate = function(value){
+            return value < 10 ? '0' + value : value;
+        }
+        var app = new Vue({
+            el: '#app',
+            data: myData,
+            created: function(){
+               myTimer = setInterval(updateTime,1000)
+            },
+            beforeDestory: function(){
+                clearInterval(myTimer)
+            },
+            filters: {
+                myFilter: function(myTimevalue){
+                    var date = new Date(myTimevalue);
+                    var year = date.getFullYear();
+                    var month = padDate(date.getMonth()+1);
+                    var day = padDate(date.getDate());
+                    var hours = padDate(date.getHours());
+                    var minutes = padDate(date.getMinutes());
+                    var seconds = padDate(date.getSeconds());
+                    return year + "." + month + "." + day + ' ' + hours + ":" + minutes + ":" + seconds;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

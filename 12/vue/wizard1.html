@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style type="text/css" media="screen">
+        #page1{
+            background-color: red;
+        }
+        #page2{
+            background-color: blue;
+        }
+        p{
+            width: 400px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+        <p id="page1" v-if="isShow == true">第一页：当isShow变量的值为true的时候，显示该行!<button @click="handleClick">下一页</button></p>
+        <p id="page2" v-else>第二页：当isShow变量的值为false的时候，显示该行!<button @click="handleClick">上一页</button></p>
+        <p>变量isShow的当前值： {{ isShow }}</p>
+    </div>
+    <script src="vue25.js"></script>
+    <script>
+        var myData={
+            isShow: true
+        };
+        var app=new Vue({
+            el: "#app",
+            data: myData,
+            methods: {
+                handleClick: function(){
+                    myData.isShow = !myData.isShow;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

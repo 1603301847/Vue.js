@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <div id="app">
+        <p v-if="isShow == 1">当isShow变量的值为1的时候，显示该行!</p>
+        <p v-else-if="isShow == 2">当isShow变量的值为2的时候，显示该行!</p>
+        <p v-else>当isShow变量的值为不为1或2的时候，显示该行!</p>
+        <button @click="handleClick">切换行的显示</button>
+        <p>变量isShow的当前值： {{ isShow }}</p>
+    </div>
+    <script src="vue25.js"></script>
+    <script>
+        var myData={
+            isShow: 1  //网页中显示的文本行由该变量控制，变量值为1，说明显示第一行
+        };
+        var app=new Vue({
+            el: "#app",
+            data: myData,
+            methods: {
+                handleClick: function(){
+                    myData.isShow++;
+                    if(myData.isShow > 3)
+                        myData.isShow = 1
+                }
+            }
+        });
+    </script>
+</body>
+</html>

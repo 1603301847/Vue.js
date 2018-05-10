@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style type="text/css" media="screen">
+        .myClass{
+            text-decoration: line-through;
+        }
+        .myClass1{
+            text-decoration: none;
+            font-weight: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <a v-bind:href="url">超链接</a><br /><br />
+        <input type="text" v-model="url" /><br /><br />
+        <img v-bind:src="imgUrl" /><br /><br />
+        <input type="text" v-model="imgUrl" />
+        <p v-bind:class="myClass">v-bind动态绑定class属性</p>
+        <button v-on:click="handleClick">改变效果</button>
+       <!--  <input type="checkbox" v-on:click="handelClick" /> -->
+    </div>
+
+    <script src="vue.min.js"></script>
+
+    <script>
+        var myData = {
+            url: "http://www.sohu.com",
+            imgUrl: "img/flower1.jpg",
+            myClass: "myClass"
+        };
+        var imgs = ["img/flower1.jpg" , "img/flower2.jpg" , "img/flower3.jpg" , "img/flower4.jpg"];
+
+        var i = 0;
+
+        function changeImg(){
+            myData.imgUrl = imgs[i];
+            i++;
+            // if(i == 4)
+            if(i == imgs.length)
+                i = 0;
+        }
+
+        var app = new Vue({
+            el: "#app",
+            data: myData,
+            created: function(){
+                setInterval(changeImg, 3000);
+            },
+            methods:{
+                handleClick: function(){
+                if(myData.myClass == "myClass")
+                    myData.myClass = "myClass1";
+                else
+                    myData.myClass = "myClass";
+            }
+        }
+        });
+    </script>
+</body>
+</html>

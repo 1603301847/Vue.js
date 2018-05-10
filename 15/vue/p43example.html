@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <div id="app">
+    <input type="text" v-model="searchText" @keyup.enter="handleSearch"><!-- @keyup监听所有按键事件 -->
+    <button @click="handleSearch">搜索</button>
+        <ul>
+            <template v-for="book in searchBooks">
+                <li>书名: {{ book.name }}</li>
+                <li>作者: {{ book.author }}</li>
+            </template>
+        </ul>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var myData = {
+            books: [
+                {
+                    name: "《Vue.js实践》",
+                    author: "梁灏"
+                },
+                {
+                    name: "《JavaScript语言精粹》",
+                    author: "Douglas Cockford"
+                },
+                {
+                    name: "《JavaScript高级程序设计|》",
+                    author: "Nicholas C.Zakas"
+                }
+            ],
+            searchText: "",
+            searchBooks: null
+        };
+
+        // function searchFunc(currentBook){ //比较每本书的名称是否包含了在文本输入框的文本
+        //     return currentBook.name.match(myData.searchText);
+        // }
+
+        var app = new Vue({
+            el: "#app",
+            data: myData,
+            created: function(){
+                myData.searchBooks = myData.books;
+            },//在Vue实例创建完成后，自动执行created函数，将books的值赋予searchBooks，保证网页一开始显示就可以让用户看到所有的书。
+            methods:{
+                handleSearch: function(){
+                    myData.searchBooks = myData.books.filter(function(currentBook){
+                        return currentBook.name.match(myData.searchText);
+                    });
+                    // searchBooks = myData.books.filter((searchFunc());//books数组的filter方法可以按照searchFunc中定义的功能来过滤books数组中的数据，并将过滤结果保存到一个新数组中。最后该新数组会通过赋值，保存到变量searchBooks中。
+            }
+        }
+        });
+    </script>
+</body>
+</html>

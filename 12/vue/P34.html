@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <div id="app">
+        <template v-if="type === 'name'"><!-- template仅仅起到将html代码分组的作用，在浏览器中不会显示 -->
+            <label>用户名:</label>
+            <input placeholder="输入用户名" key='name-input'/>
+        </template>
+        <template v-else-if="type === 'phone'">
+            <label>手机号:</label>
+            <input placeholder="输入手机号" key='phone-input'/>
+        </template>
+        <template v-else>
+            <label>邮箱:</label>
+            <input placeholder="输入邮箱" key='mail-input'/>
+        </template>
+        <button @click="handleToggleClick">切换输入类型</button>
+    </div>
+    <script src="vue25.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data:{
+                type: 'name'
+             },
+            methods: {
+                handleToggleClick:function(){
+                    this.type = this.type === 'name' ? 'phone' : (this.type==="phone" ? "mail":"name");
+                }
+            }
+        })
+    </script>
+</body>
+</html>

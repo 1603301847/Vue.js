@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <div id="app">
+    <input type="text" v-model="searchText"><!-- @keyup监听所有按键事件 -->
+        <ul>
+            <template v-for="book in searchBooks"><!-- searchBooks不是普通的变量，而是计算属性 -->
+                <li>书名: {{ book.name }}</li>
+                <li>作者: {{ book.author }}</li>
+            </template>
+        </ul>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var myData = {
+            books: [
+                {
+                    name: "《Vue.js实践》",
+                    author: "梁灏"
+                },
+                {
+                    name: "《JavaScript语言精粹》",
+                    author: "Douglas Cockford"
+                },
+                {
+                    name: "《JavaScript高级程序设计|》",
+                    author: "Nicholas C.Zakas"
+                }
+            ],
+            searchText: ""
+        };
+
+        var app = new Vue({
+            el: "#app",
+            data: myData,
+            computed: {
+                searchBooks: function(){
+                    return myData.books.filter(function(currentBook){
+                         return currentBook.name.match(myData.searchText);
+                });
+                }
+        }
+        });
+    </script>
+</body>
+</html>

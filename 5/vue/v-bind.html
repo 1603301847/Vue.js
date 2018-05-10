@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <p v-bind:class="mySize" v-bind:style="{'color': myColor}" v-on:click="handleClick">{{ myTime }}</p>
+        <!-- <button v-on:click="handleClick">{{ text }}</button> -->
+    </div>
+
+    <script src="vue.js"></script>
+
+    <script type="text/javascript">
+        var myData = {
+            myTime: new Date().toLocaleString(),
+            mySize: "size1",
+            myColor: "red",
+            // text: "放大"
+        };
+
+        var colorArray = ["red","green","blue"];
+        var i = 0;
+
+        function updateTime(){
+            myData.myTime = new Date().toLocaleString();
+            myData.myColor = colorArray[i];
+            i = i + 1;
+            if (i == 3)
+                i = 0;
+        }
+
+        var app = new Vue({
+            el: "#app",
+            data: myData,
+            created: function(){
+                setInterval(updateTime, 1000);
+            },
+            methods:{
+                handleClick: function(){
+                    myData.mySize = myData.mySize == "size1" ? "size2"  : "size1";
+                    // myData.text = myData.text == "放大" ? "缩小" : "放大";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

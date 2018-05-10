@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <!-- 定义视图View -->
+    <div id="app">
+        <h3>简易计算机器（用computed方法实现）</h3>
+        <input type="text" v-model.number="a"/><!-- 修饰符number的作用是将文本框中的字符形式数字转换为数值 -->
+        <input type="text" size="3" v-model="operator"/>
+        <input type="text" v-model.number="b"/>
+        <p>计算结果：{{ a }} {{ operator }} {{ b }} = {{ c }}</p>
+    </div>
+
+    <!-- 将vue.js框架文件链接到本网页 -->
+    <script src="vue.js"></script>
+
+    <script>
+        var myData = { //用一对花括号包含的是一个JS对象，将该对象保存到myData变量中。这就是定义 模型Model
+        a: 0, //声明第一个参加计算的数据
+        b: 0, //声明第二个参加计算的数据
+        operator: "+" //声明运算符
+        };
+
+        var app = new Vue({ //建立一个Vue实例（Vue对象），也就是创建ViewModel，Vue对象可以看做是胶水或者汽车的引擎。
+        el: "#app", //el选项用于指定将Vue对象挂载到哪个DOM对象（这里是div）下。通俗地讲就是指定Vue对象需要使用哪个视图。
+        data: myData, //data选项用于指定Vue对象需要用到的数据（模型）。
+        computed: { //computed选项用于指定方法定义的开始
+            c: function(){//定义具体的计算属性
+                switch(myData.operator){
+                    case "+": return(myData.a + myData.b);
+                    case "-": return(myData.a - myData.b);
+                    case "*": return(myData.a * myData.b);
+                    case "/": return(myData.a / myData.b);
+                }
+            }
+        }
+
+        });
+    </script>
+</body>
+</html>
